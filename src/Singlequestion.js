@@ -1,0 +1,30 @@
+import React,{useState} from 'react'
+import {BsPlusLg} from "react-icons/bs"
+import {BiMinus} from "react-icons/bi"
+function Singlequestion({question,answer}) {
+   const [showAnswer,setShowAnswer] = useState(false)
+  return (
+    <>
+    <div className='border border-gray-400 rounded-lg bg-white'>
+        <article className='flex items-center justify-between  p-4 lg:p-6'>
+          <h2 onClick={() => setShowAnswer(!showAnswer)} className='cursor-pointer'>{question}</h2>
+          <ul>
+           {
+            !showAnswer &&  <li>  <button onClick={() => setShowAnswer(true)}><BsPlusLg/></button> </li>
+           }
+           {
+            showAnswer &&  <li>  <button  onClick={() => setShowAnswer(false)}><BiMinus/></button> </li>
+           }
+          </ul>
+         
+         
+        </article>
+        <article className={`${showAnswer && 'border-t border-gray-400  p-4 lg:p-6'}`}>
+         { showAnswer &&  <p>{answer}</p>}
+        </article>
+      </div>
+    </>
+  )
+}
+
+export default Singlequestion
